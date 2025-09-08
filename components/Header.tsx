@@ -1,0 +1,110 @@
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+
+const navLinks = [
+  { id: 'home', name: 'Início' },
+  { id: 'about', name: 'Sobre' },
+  { id: 'projects', name: 'Projetos' },
+  { id: 'cases', name: 'Cases' },
+  { id: 'contato', name: 'Contato' },
+];
+
+const Header: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(navLinks[0].id);
+  const indicatorRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const tabsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const updateIndicatorPosition = useCallback(() => {
+    const activeTabIndex = navLinks.findIndex(tab => tab.id === activeTab);
+    const activeTabElement = tabsRef.current[activeTabIndex];
+    if (activeTabElement && indicatorRef.current && navRef.current) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const tabRect = activeTabElement.getBoundingClientRect();
+      // Position indicator centered above the active tab
+      const left = tabRect.left - navRect.left + (tabRect.width / 2) - (indicatorRef.current.offsetWidth / 2);
+      indicatorRef.current.style.left = `${left}px`;
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
+    updateIndicatorPosition();
+    window.addEventListener('resize', updateIndicatorPosition);
+    return () => window.removeEventListener('resize', updateIndicatorPosition);
+  }, [updateIndicatorPosition]);
+
+  useEffect(() => {
+    const sections = navLinks.map(link => document.getElementById(link.id));
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveTab(entry.target.id);
+        }
+      });
+    }, { 
+      rootMargin: '-50% 0px -50% 0px', // When the section is in the middle of the viewport
+      threshold: 0 
+    });
+
+    sections.forEach(section => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  const handleTabClick = (id: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if(element) {
+        const headerOffset = 100; // Adjust this value to your liking
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+        window.scrollTo({
+             top: offsetPosition,
+             behavior: "smooth"
+        });
+    }
+  };
+
+  return (
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+      <div className="relative">
+        <div 
+          ref={indicatorRef} 
+          className="absolute -top-1.5 h-1.5 w-6 bg-black rounded-full transition-all duration-300 ease-in-out"
+          aria-hidden="true"
+        ></div>
+        <nav ref={navRef} className="bg-white/95 backdrop-blur-sm rounded-full shadow-lg p-1.5 flex items-center space-x-1">
+          {navLinks.map((link, index) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              ref={el => {tabsRef.current[index] = el}}
+              onClick={(e) => handleTabClick(link.id, e)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-colors relative block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
+              aria-current={activeTab === link.id ? 'page' : undefined}
+            >
+              <span className={`relative z-10 transition-colors ${activeTab === link.id ? 'text-black' : 'text-gray-600 hover:text-black'}`}>
+                {link.name}
+              </span>
+              {activeTab === link.id && (
+                <span
+                  className="absolute inset-0 rounded-full bg-gray-100"
+                  style={{ zIndex: 0 }}
+                ></span>
+              )}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

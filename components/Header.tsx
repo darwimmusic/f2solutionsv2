@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
   { id: 'home', name: 'Início' },
@@ -13,6 +14,8 @@ const Header: React.FC = () => {
   const indicatorRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const tabsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const updateIndicatorPosition = useCallback(() => {
     const activeTabIndex = navLinks.findIndex(tab => tab.id === activeTab);
@@ -33,42 +36,49 @@ const Header: React.FC = () => {
   }, [updateIndicatorPosition]);
 
   useEffect(() => {
-    const sections = navLinks.map(link => document.getElementById(link.id));
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveTab(entry.target.id);
-        }
+    if (location.pathname === '/') {
+      const sections = navLinks.map(link => document.getElementById(link.id));
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveTab(entry.target.id);
+          }
+        });
+      }, { 
+        rootMargin: '-50% 0px -50% 0px',
+        threshold: 0 
       });
-    }, { 
-      rootMargin: '-50% 0px -50% 0px', // When the section is in the middle of the viewport
-      threshold: 0 
-    });
 
-    sections.forEach(section => {
-      if (section) observer.observe(section);
-    });
-
-    return () => {
       sections.forEach(section => {
-        if (section) observer.unobserve(section);
+        if (section) observer.observe(section);
       });
-    };
-  }, []);
+
+      return () => {
+        sections.forEach(section => {
+          if (section) observer.unobserve(section);
+        });
+      };
+    }
+  }, [location.pathname]);
 
   const handleTabClick = (id: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if(element) {
-        const headerOffset = 100; // Adjust this value to your liking
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
-        window.scrollTo({
-             top: offsetPosition,
-             behavior: "smooth"
-        });
+    
+    if (location.pathname === '/') {
+      const element = document.getElementById(id);
+      if(element) {
+          const headerOffset = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+          window.scrollTo({
+               top: offsetPosition,
+               behavior: "smooth"
+          });
+      }
+    } else {
+      navigate('/', { state: { scrollTo: id } });
     }
   };
 

@@ -35,7 +35,7 @@ const ContactForm: React.FC = () => {
                             Ligue para (11) 3073-1616 e fale com a nossa equipe
                         </InfoPoint>
                     </div>
-                    <div className="bg-gray-900/50 p-8 rounded-lg">
+                    <div className="bg-black p-8 rounded-lg">
                         <form className="space-y-6">
                             <div className="grid sm:grid-cols-2 gap-6">
                                 <div>

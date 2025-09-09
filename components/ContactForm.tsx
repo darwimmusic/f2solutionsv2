@@ -4,6 +4,7 @@ import ChatBubbleIcon from './icons/ChatBubbleIcon';
 import TeamIcon from './icons/TeamIcon';
 import LightningBoltIcon from './icons/LightningBoltIcon';
 import PhoneIcon from './icons/PhoneIcon';
+import MailIcon from './icons/MailIcon';
 
 const InfoPoint: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode }> = ({ icon, title, children }) => (
     <div className="flex items-start">
@@ -31,8 +32,11 @@ const ContactForm: React.FC = () => {
                         <InfoPoint icon={<LightningBoltIcon className="w-8 h-8 text-blue-300" />} title="Resposta rápida">
                             Entre em contato conosco no formulário e iremos te retornar o mais rápido possível.
                         </InfoPoint>
+                        <InfoPoint icon={<MailIcon className="w-8 h-8 text-blue-300" />} title="Nosso E-mail">
+                            contato@f2solutions.com.br
+                        </InfoPoint>
                         <InfoPoint icon={<PhoneIcon className="w-8 h-8 text-blue-300" />} title="Prefere o telefone?">
-                            Ligue para (11) 3073-1616 e fale com a nossa equipe
+                            Ligue para (11) 99289-4013 e fale com a nossa equipe
                         </InfoPoint>
                     </div>
                     <div className="bg-black p-8 rounded-lg">

@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 const FlipLink = ({ children, href }: { children: string; href: string }) => (
     <a
         href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         className="group text-white relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase"
         style={{ lineHeight: 0.85 }}
     >
@@ -130,9 +132,9 @@ const Footer: React.FC = () => {
                         <a href="#" className="text-sm text-gray-400 hover:text-white">Política de Privacidade</a>
                     </div>
                     <div className="flex flex-col items-center md:items-end space-y-2">
-                        <FlipLink href="#">Instagram</FlipLink>
-                        <FlipLink href="#">Facebook</FlipLink>
-                        <FlipLink href="#">YouTube</FlipLink>
+                        <FlipLink href="https://www.instagram.com/f2solutions/">Instagram</FlipLink>
+                        <FlipLink href="https://www.facebook.com/F2solutions">Facebook</FlipLink>
+                        <FlipLink href="#">LinkedIn</FlipLink>
                     </div>
                 </div>
             </div>

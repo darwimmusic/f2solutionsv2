@@ -7,6 +7,7 @@ import { siteData } from '../src/data/siteData';
 const Hero: React.FC = () => {
   return (
     <section className="h-screen relative overflow-hidden">
+      <img src="https://ik.imagekit.io/viihferreira/Logo_%C3%8Dcone_White.png?updatedAt=1757445076670" alt="Logo" className="absolute top-4 left-8 w-24 h-21 z-20" />
       <div
         className="absolute top-0 left-0 w-full h-full"
         style={{ backgroundImage: `url(https://picsum.photos/seed/event1/1920/1080)`, backgroundSize: 'cover', backgroundPosition: 'center' }}

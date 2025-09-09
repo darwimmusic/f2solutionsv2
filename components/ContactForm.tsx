@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Button from './Button';
 import ChatBubbleIcon from './icons/ChatBubbleIcon';
 import TeamIcon from './icons/TeamIcon';
 import LightningBoltIcon from './icons/LightningBoltIcon';
@@ -63,12 +64,9 @@ const ContactForm: React.FC = () => {
                                 <textarea id="message" rows={4} className="w-full bg-gray-800 border border-gray-600 rounded-md p-3 text-white focus:ring-blue-500 focus:border-blue-500"></textarea>
                             </div>
                             <div>
-                                <button type="submit" className="group relative w-full">
-                                    <div className="relative z-10 flex h-12 w-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-[#070e41] to-[#263381] border-2 border-[rgb(76_100_255)] px-6 font-medium text-white transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3">
-                                        Enviar Mensagem
-                                    </div>
-                                    <div className="absolute inset-0 z-0 h-full w-full rounded-full transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#394481,10px_10px_#5766be,15px_15px_#8898f3]"></div>
-                                </button>
+                                <Button type="submit" className="w-full">
+                                    Enviar Mensagem
+                                </Button>
                             </div>
                         </form>
                     </div>

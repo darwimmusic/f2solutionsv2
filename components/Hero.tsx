@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Button from './Button';
 import ChevronLeftIcon from './icons/ChevronLeftIcon';
 import ChevronRightIcon from './icons/ChevronRightIcon';
 
@@ -61,18 +62,13 @@ const Hero: React.FC = () => {
           {slides[currentIndex].subtitle}
         </p>
         <div className="mt-8 flex space-x-4">
-          <button className="group relative">
-            <div
-              className="relative z-10 inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-[#070e41] to-[#263381] border-2 border-[rgb(76_100_255)] px-6 font-medium text-white transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3"
-            >
-              Agendar um bate-papo
-              <ChevronRightIcon className="w-5 h-5 ml-2" />
-            </div>
-            <div className="absolute inset-0 z-0 h-full w-full rounded-full transition-all duration-300 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:[box-shadow:5px_5px_#394481,10px_10px_#5766be,15px_15px_#8898f3]"></div>
-          </button>
-          <button className="text-white font-semibold px-4 py-3 hover:text-blue-300 transition-colors">
+          <Button>
+            Agendar um bate-papo
+            <ChevronRightIcon className="w-5 h-5 ml-2" />
+          </Button>
+          <Button>
             Saiba mais.
-          </button>
+          </Button>
         </div>
       </div>
 

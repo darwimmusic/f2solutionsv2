@@ -6,19 +6,19 @@ const aboutData = [
     id: 'quem-somos',
     title: 'QUEM SOMOS',
     description: siteData.empresa.slogan,
-    image: 'https://picsum.photos/seed/whoweare/800/600'
+    image: 'https://ik.imagekit.io/viihferreira/QUEM%20SOMOS/RODOLFO.PNG?updatedAt=1757448602146'
   },
   {
     id: 'dna',
     title: siteData.empresa.dna_empresa.titulo,
     description: siteData.empresa.dna_empresa.texto,
-    image: 'https://picsum.photos/seed/dna/800/600'
+    image: 'https://ik.imagekit.io/viihferreira/QUEM%20SOMOS/FELIPE.PNG?updatedAt=1757446977018'
   },
   {
     id: 'o-que-fazemos',
     title: siteData.empresa.missao.titulo,
     description: siteData.empresa.missao.texto,
-    image: 'https://picsum.photos/seed/whatwedo/800/600'
+    image: 'https://ik.imagekit.io/viihferreira/QUEM%20SOMOS/bola%20led.PNG?updatedAt=1757449050559'
   }
 ];
 

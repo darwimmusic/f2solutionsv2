@@ -20,7 +20,7 @@ const categories = siteData.categorias.map(category => ({
   name: category.nome,
   description: category.produtos[0]?.descricao || 'Confira nossos produtos incríveis.',
   slug: slugify(category.nome),
-  image: `https://picsum.photos/seed/${slugify(category.nome)}/800/1200`,
+  image: category.imagem,
 }));
 
 const ProductCategories: React.FC = () => {

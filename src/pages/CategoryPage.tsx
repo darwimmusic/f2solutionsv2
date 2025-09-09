@@ -48,7 +48,7 @@ const CategoryPage: React.FC = () => {
             return (
               <div key={productSlug} className="group block bg-gray-900 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                 <div className="relative">
-                  <img src={`https://picsum.photos/seed/${productSlug}/800/600`} alt={produto.nome} className="w-full h-64 object-cover" />
+                  <img src={produto.imagem} alt={produto.nome} className="w-full h-64 object-cover" />
                   <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-all duration-300"></div>
                 </div>
                 <div className="p-6">

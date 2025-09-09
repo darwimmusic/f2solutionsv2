@@ -1,9 +1,27 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { categoriesData as categories } from '../src/data/projectsData';
+import { siteData } from '../src/data/siteData';
 import Button from './Button';
 import ChevronRightIcon from './icons/ChevronRightIcon';
+
+const slugify = (text: string) =>
+  text
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
+
+const categories = siteData.categorias.map(category => ({
+  name: category.nome,
+  description: category.produtos[0]?.descricao || 'Confira nossos produtos incríveis.',
+  slug: slugify(category.nome),
+  image: `https://picsum.photos/seed/${slugify(category.nome)}/800/1200`,
+}));
 
 const ProductCategories: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

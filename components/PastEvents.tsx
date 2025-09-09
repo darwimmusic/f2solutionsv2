@@ -1,12 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { categoriesData } from '../src/data/projectsData';
+import { siteData } from '../src/data/siteData';
 
-const allProjects = categoriesData.flatMap(category => category.projects);
+const slugify = (text: string) =>
+  text
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
+
+const allProducts = siteData.categorias.flatMap(category => 
+  category.produtos.map(produto => ({
+    ...produto,
+    categorySlug: slugify(category.nome),
+    productSlug: slugify(produto.nome),
+    coverImage: `https://picsum.photos/seed/${slugify(produto.nome)}/400/600`,
+  }))
+);
 
 const PastEvents: React.FC = () => {
   // Duplicamos para o efeito de scroll infinito
-  const duplicatedProjects = [...allProjects, ...allProjects];
+  const duplicatedProducts = [...allProducts, ...allProducts];
 
   return (
     <section id="cases" className="bg-black py-20 overflow-hidden">
@@ -57,23 +75,23 @@ const PastEvents: React.FC = () => {
       
       <div className="scroll-container w-full">
         <div className="infinite-scroll flex gap-8 w-max">
-          {duplicatedProjects.map((project, index) => (
+          {duplicatedProducts.map((product, index) => (
             <Link
-              to={`/projeto/${project.id}`}
-              key={`${project.id}-${index}`}
+              to={`/projeto/${product.categorySlug}/${product.productSlug}`}
+              key={`${product.productSlug}-${index}`}
               className="image-item group flex-shrink-0 w-80 h-96 rounded-xl overflow-hidden shadow-2xl block"
             >
               <div className="relative w-full h-full">
                 <img
-                  src={project.coverImage}
-                  alt={project.title}
+                  src={product.coverImage}
+                  alt={product.nome}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold">{project.title}</h3>
-                  <p className="text-sm text-gray-300 line-clamp-2">{project.description}</p>
+                  <h3 className="text-2xl font-bold">{product.nome}</h3>
+                  <p className="text-sm text-gray-300 line-clamp-2">{product.descricao}</p>
                 </div>
               </div>
             </Link>

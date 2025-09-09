@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
+import { siteData } from '../src/data/siteData';
 
 const aboutData = [
   {
     id: 'quem-somos',
     title: 'QUEM SOMOS',
-    description: 'Somos uma agência de soluções tecnológicas que vive e respira inovação. Nascemos da paixão por criar experiências únicas e memoráveis, conectando marcas e pessoas através da tecnologia. Mais do que fornecedores, somos parceiros estratégicos na jornada de sucesso do seu evento ou projeto.',
+    description: siteData.empresa.slogan,
     image: 'https://picsum.photos/seed/whoweare/800/600'
   },
   {
     id: 'dna',
-    title: 'O DNA DA F2',
-    description: 'Nosso DNA é composto por criatividade, comprometimento e uma busca incessante pelo extraordinário. Desafiamos o status quo e transformamos ideias audaciosas em realidade. Acreditamos no poder da colaboração e trabalhamos lado a lado com nossos clientes para superar todas as expectativas.',
+    title: siteData.empresa.dna_empresa.titulo,
+    description: siteData.empresa.dna_empresa.texto,
     image: 'https://picsum.photos/seed/dna/800/600'
   },
   {
     id: 'o-que-fazemos',
-    title: 'O QUE NÓS FAZEMOS',
-    description: 'Desenvolvemos soluções completas, desde plataformas interativas e realidade aumentada até projeções mapeadas e experiências imersivas. Atendemos a diversos setores, como varejo, eventos corporativos e exposições, sempre com o objetivo de engajar o público e gerar resultados impactantes para o seu negócio.',
+    title: siteData.empresa.missao.titulo,
+    description: siteData.empresa.missao.texto,
     image: 'https://picsum.photos/seed/whatwedo/800/600'
   }
 ];
@@ -32,8 +33,8 @@ const About: React.FC = () => {
     <section className="bg-black text-white overflow-hidden">
       <div className="bg-black">
         <div className="container mx-auto px-6 text-center py-32">
-          <h2 className="text-5xl font-bold">Sobre a F2 Solutions</h2>
-          <p className="text-lg text-gray-300 mt-2">Conheça a força que impulsiona a inovação em cada projeto.</p>
+          <h2 className="text-5xl font-bold">Sobre a {siteData.empresa.nome}</h2>
+          <p className="text-lg text-gray-300 mt-2">{siteData.empresa.slogan}</p>
         </div>
       </div>
       <div 

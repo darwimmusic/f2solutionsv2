@@ -46,14 +46,14 @@ const CategoryPage: React.FC = () => {
           {category.produtos.map((produto) => {
             const productSlug = slugify(produto.nome);
             return (
-              <Link to={`/projeto/${category.slug}/${productSlug}`} key={productSlug} className="group block bg-gray-900 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <Link to={`/projeto/${category.slug}/${productSlug}`} key={productSlug} className="group block border border-white rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                 <div className="relative">
                   <img src={produto.imagem} alt={produto.nome} className="w-full h-64 object-cover" />
                   <div className="absolute inset-0 bg-black bg-opacity-50 group-hover:bg-opacity-30 transition-all duration-300"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-semibold">{produto.nome}</h3>
-                  <p className="text-gray-400 mt-2">{produto.descricao}</p>
+                  <p className="text-white mt-2">{produto.descricao}</p>
                 </div>
               </Link>
             );

@@ -2,23 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { siteData } from '../src/data/siteData';
 
-const slugify = (text: string) =>
-  text
-    .toString()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-');
-
 const allProducts = siteData.categorias.flatMap(category => 
   category.produtos.map(produto => ({
     ...produto,
-    categorySlug: slugify(category.nome),
-    productSlug: slugify(produto.nome),
-    coverImage: `https://picsum.photos/seed/${slugify(produto.nome)}/400/600`,
+    categorySlug: category.slug,
   }))
 );
 
@@ -77,13 +64,13 @@ const PastEvents: React.FC = () => {
         <div className="infinite-scroll flex gap-8 w-max">
           {duplicatedProducts.map((product, index) => (
             <Link
-              to={`/projeto/${product.categorySlug}/${product.productSlug}`}
-              key={`${product.productSlug}-${index}`}
+              to={`/projeto/${product.categorySlug}/${product.slug}`}
+              key={`${product.slug}-${index}`}
               className="image-item group flex-shrink-0 w-80 h-96 rounded-xl overflow-hidden shadow-2xl block"
             >
               <div className="relative w-full h-full">
                 <img
-                  src={product.coverImage}
+                  src={product.imagem}
                   alt={product.nome}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   loading="lazy"

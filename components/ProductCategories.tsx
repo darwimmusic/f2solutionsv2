@@ -30,7 +30,7 @@ const ProductCategories: React.FC = () => {
   const collapsedWidth = '12%';
 
   return (
-    <section className="bg-black text-white overflow-hidden">
+    <section className="text-white overflow-hidden">
         <div 
           className="w-full h-[48rem] flex"
           onMouseLeave={() => setHoveredIndex(null)}
@@ -63,7 +63,7 @@ const ProductCategories: React.FC = () => {
                   <div className={`transition-all duration-500 ease-in-out ${isHovered ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-10'}`}>
                     <h3 className="text-5xl font-bold">{category.name}</h3>
                     <p className="mt-4 max-w-md text-gray-200">{category.description}</p>
-                    <Button as={Link} to={`/categoria/${category.slug}`} className="mt-6">
+                    <Button as={Link} to={`/categoria/${category.slug}`} className="mt-6 text-white">
                       Ver Categoria
                       <ChevronRightIcon className="w-5 h-5 ml-2" />
                     </Button>

@@ -6,7 +6,7 @@ const FlipLink = ({ children, href }: { children: string; href: string }) => (
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group text-white relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase"
+        className="group text-black relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase"
         style={{ lineHeight: 0.85 }}
     >
         <div className="flex">
@@ -108,7 +108,7 @@ const WaveAnimation = ({ barCount = 23 }: { barCount?: number }) => {
                         className="wave-segment"
                         style={{
                             height: `${index + 1}px`,
-                            backgroundColor: "rgb(255, 255, 255)",
+                            backgroundColor: "rgb(0, 0, 0)",
                             transition: "transform 0.1s ease",
                             willChange: "transform",
                             marginTop: "-2px",
@@ -122,14 +122,14 @@ const WaveAnimation = ({ barCount = 23 }: { barCount?: number }) => {
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-black text-gray-300 relative">
+        <footer className="bg-white text-black relative">
             <WaveAnimation />
 
             <div className="container mx-auto px-6 py-12">
                 <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                     <div className="mb-8 md:mb-0">
                         <p>&copy; {new Date().getFullYear()} F2 SOLUTIONS EM TECNOLOGIA E CONTEÚDO. Todos os direitos reservados</p>
-                        <a href="#" className="text-sm text-gray-400 hover:text-white">Política de Privacidade</a>
+                        <a href="#" className="text-sm text-gray-600 hover:text-black">Política de Privacidade</a>
                     </div>
                     <div className="flex flex-col items-center md:items-end space-y-2">
                         <FlipLink href="https://www.instagram.com/f2solutions/">Instagram</FlipLink>

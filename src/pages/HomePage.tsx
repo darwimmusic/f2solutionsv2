@@ -42,11 +42,11 @@ const HomePage: React.FC = () => {
       <div id="projects">
         <ProductCategories />
       </div>
-      <section className="bg-black py-10 overflow-hidden">
-        <InfiniteScroller baseVelocity={-2} className="font-bold uppercase text-white">
+      <section className="bg-white py-10 overflow-hidden">
+        <InfiniteScroller baseVelocity={-2} className="font-bold uppercase text-black">
           INOVAÇÃO • TECNOLOGIA • EXPERIÊNCIA •&nbsp;
         </InfiniteScroller>
-        <InfiniteScroller baseVelocity={2} className="font-bold uppercase" style={{ WebkitTextStroke: '1px white', color: 'transparent' }}>
+        <InfiniteScroller baseVelocity={2} className="font-bold uppercase" style={{ WebkitTextStroke: '1px black', color: 'transparent' }}>
           INOVAÇÃO • TECNOLOGIA • EXPERIÊNCIA •&nbsp;
         </InfiniteScroller>
       </section>

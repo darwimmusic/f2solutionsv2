@@ -30,11 +30,11 @@ const About: React.FC = () => {
   const initialWidth = '33.33%';
 
   return (
-    <section className="bg-black text-white overflow-hidden">
-      <div className="bg-black">
+    <section className="bg-white text-black overflow-hidden">
+      <div className="bg-white">
         <div className="container mx-auto px-6 text-center py-32">
           <h2 className="text-5xl font-bold">Sobre a {siteData.empresa.nome}</h2>
-          <p className="text-lg text-gray-300 mt-2">{siteData.empresa.slogan}</p>
+          <p className="text-lg text-gray-700 mt-2">{siteData.empresa.slogan}</p>
         </div>
       </div>
       <div 

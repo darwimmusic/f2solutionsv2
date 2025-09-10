@@ -14,7 +14,7 @@ const PastEvents: React.FC = () => {
   const duplicatedProducts = [...allProducts, ...allProducts];
 
   return (
-    <section id="cases" className="bg-black py-20 overflow-hidden">
+    <section id="cases" className="bg-white py-20 overflow-hidden">
       <style>{`
         @keyframes scroll-right {
           0% {

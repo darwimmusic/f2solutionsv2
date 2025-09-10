@@ -100,7 +100,7 @@ class Particle {
         g: this.startColor.g + (this.targetColor.g - this.startColor.g) * this.colorWeight,
         b: this.startColor.b + (this.targetColor.b - this.startColor.b) * this.colorWeight,
       }
-      this.targetColor = { r: 0, g: 0, b: 0 }
+      this.targetColor = { r: 255, g: 255, b: 255 }
       this.colorWeight = 0
       this.isKilled = true
     }
@@ -121,7 +121,7 @@ class Particle {
 
 // --- ALTERAÇÃO 1: Definindo os textos e a cor desejada ---
 const F2_WORDS = ["F2 SOLUTIONS", "TECNOLOGIA", "EVENTOS", "AUTOMAÇÕES", "DESENVOLVimento"]
-const F2_COLOR = { r: 255, g: 255, b: 255 } // Cor Azul (#FFFFFF)
+const F2_COLOR = { r: 0, g: 0, b: 0 } // Cor Preta (#000000)
 
 interface ParticleTextEffectProps {
   words?: string[]
@@ -236,7 +236,7 @@ export function ParticleTextEffect({ words = F2_WORDS }: ParticleTextEffectProps
     const ctx = canvas.getContext("2d")!
     const particles = particlesRef.current
 
-    ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
+    ctx.fillStyle = "rgba(255, 255, 255, 0.1)"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -325,7 +325,7 @@ export function ParticleTextEffect({ words = F2_WORDS }: ParticleTextEffectProps
   }, [])
 
   return (
-    <div className="flex items-center justify-center bg-black">
+    <div className="flex items-center justify-center bg-white">
       <canvas
         ref={canvasRef}
         style={{ maxWidth: "100%", height: "auto" }}

@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="bg-black text-white font-sans">
+      <div className="bg-white text-black font-sans">
         <Header />
         <main>
           <Routes>

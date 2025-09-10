@@ -12,6 +12,7 @@ const Hero: React.FC = () => {
       >
         <source src="https://ik.imagekit.io/viihferreira/HERO/Video%20F2%20Solutions_Horizontal.mp4?updatedAt=1757538391203" type="video/mp4" />
       </video>
+
     </section>
   );
 };

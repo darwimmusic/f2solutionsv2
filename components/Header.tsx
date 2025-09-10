@@ -83,17 +83,24 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-      <div className="relative">
-        <div 
-          ref={indicatorRef} 
-          className="absolute -top-1.5 h-1.5 w-6 bg-black rounded-full transition-all duration-300 ease-in-out"
-          aria-hidden="true"
-        ></div>
-        <nav ref={navRef} className="bg-white/95 backdrop-blur-sm rounded-full shadow-lg p-1.5 flex items-center space-x-1">
-          {navLinks.map((link, index) => (
-            <a
-              key={link.id}
+    <header className="fixed top-0 left-0 right-0 z-50 p-2">
+      <div className="container mx-auto flex items-center justify-between">
+        <img 
+          src="https://ik.imagekit.io/viihferreira/Logo_%C3%8Dcone_White.png?updatedAt=1757445076670" 
+          alt="F2 Solutions Logo" 
+          className="w-14 md:w-20 lg:w-16" 
+        />
+        <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="relative">
+            <div 
+              ref={indicatorRef} 
+              className="absolute -top-1.5 h-1.5 w-6 bg-black rounded-full transition-all duration-300 ease-in-out"
+              aria-hidden="true"
+            ></div>
+            <nav ref={navRef} className="bg-white/95 backdrop-blur-sm rounded-full shadow-lg p-1.5 flex items-center space-x-1">
+              {navLinks.map((link, index) => (
+                <a
+                  key={link.id}
               href={`#${link.id}`}
               ref={el => {tabsRef.current[index] = el}}
               onClick={(e) => handleTabClick(link.id, e)}
@@ -109,9 +116,11 @@ const Header: React.FC = () => {
                   style={{ zIndex: 0 }}
                 ></span>
               )}
-            </a>
-          ))}
-        </nav>
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
       </div>
     </header>
   );

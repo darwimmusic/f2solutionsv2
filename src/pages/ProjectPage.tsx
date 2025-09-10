@@ -10,10 +10,10 @@ const ProjectPage: React.FC = () => {
 
   if (!product || !category) {
     return (
-      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+      <div className="bg-white text-dark min-h-screen flex items-center justify-center">
         <div className="container mx-auto px-6 py-24 text-center">
           <h1 className="text-5xl font-bold">Produto não encontrado</h1>
-          <Link to="/" className="mt-8 inline-block text-blue-400 hover:text-blue-300">
+          <Link to="/" className="mt-8 inline-block text-primary hover:opacity-80">
             Voltar para a Home
           </Link>
         </div>
@@ -22,13 +22,13 @@ const ProjectPage: React.FC = () => {
   }
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-white text-dark min-h-screen">
       <div className="container mx-auto px-6 py-24 pt-32">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Link to={`/categoria/${category.slug}`} className="text-blue-400 font-semibold hover:underline">{category.nome}</Link>
+            <Link to={`/categoria/${category.slug}`} className="text-primary font-semibold hover:underline">{category.nome}</Link>
             <h1 className="text-5xl md:text-6xl font-bold mt-2 mb-4">{product.nome}</h1>
-            <p className="text-lg text-gray-300">{product.descricao}</p>
+            <p className="text-lg text-dark">{product.descricao}</p>
           </div>
 
           <div className="mb-12">

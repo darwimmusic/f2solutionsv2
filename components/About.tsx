@@ -37,8 +37,9 @@ const About: React.FC = () => {
           <p className="text-lg text-gray-700 mt-2">{siteData.empresa.slogan}</p>
         </div>
       </div>
+      {/* Desktop View */}
       <div 
-        className="w-full h-[40rem] flex"
+        className="w-full h-[40rem] hidden md:flex"
         onMouseLeave={() => setHoveredIndex(null)}
       >
         {aboutData.map((item, index) => {
@@ -74,6 +75,22 @@ const About: React.FC = () => {
             </div>
           );
         })}
+      </div>
+      {/* Mobile View */}
+      <div className="md:hidden flex flex-col">
+        {aboutData.map((item) => (
+          <div key={item.id} className="relative h-80 overflow-hidden group">
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
+              style={{ backgroundImage: `url(${item.image})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            <div className="relative z-10 p-6 flex flex-col justify-end h-full text-white">
+              <h3 className="text-3xl font-bold">{item.title}</h3>
+              <p className="mt-2 text-gray-200 text-sm">{item.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

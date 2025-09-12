@@ -78,7 +78,7 @@ const ProductCategories: React.FC = () => {
       {/* Mobile View */}
       <div className="md:hidden flex flex-col">
         {categories.map((category) => (
-          <Link key={category.slug} to={`/categoria/${category.slug}`} className="relative h-64 overflow-hidden group">
+          <div key={category.slug} className="relative h-80 overflow-hidden group">
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
               style={{ backgroundImage: `url(${category.image})` }}
@@ -87,8 +87,12 @@ const ProductCategories: React.FC = () => {
             <div className="relative z-10 p-6 flex flex-col justify-end h-full text-white">
               <h3 className="text-3xl font-bold">{category.name}</h3>
               <p className="mt-2 text-gray-200 text-sm">{category.description}</p>
+              <Button as={Link} to={`/categoria/${category.slug}`} className="mt-4 text-white self-start">
+                Ver Categoria
+                <ChevronRightIcon className="w-5 h-5 ml-2" />
+              </Button>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

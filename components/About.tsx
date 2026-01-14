@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { siteData } from '../src/data/siteData';
+import FullServiceIcon from './icons/FullServiceIcon';
+import TeamIcon from './icons/TeamIcon';
+import LightningBoltIcon from './icons/LightningBoltIcon';
+import ResultsIcon from './icons/ResultsIcon';
 
 const aboutData = [
   {
@@ -32,9 +36,48 @@ const About: React.FC = () => {
   return (
     <section className="bg-white text-black overflow-hidden">
       <div className="bg-white">
-        <div className="container mx-auto px-6 text-center py-32">
-          <h2 className="text-5xl font-bold">Sobre a {siteData.empresa.nome}</h2>
-          <p className="text-lg text-gray-700 mt-2">{siteData.empresa.slogan}</p>
+        <div className="container mx-auto px-6 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Expertise</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {/* Full Service */}
+            <div className="flex flex-col items-center">
+              <div className="text-blue-600 mb-4 w-16 h-16">
+                <FullServiceIcon className="w-full h-full" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Full Service</h3>
+              <p className="text-gray-600">Do conceito à execução, cuidamos de todas as etapas.</p>
+            </div>
+
+            {/* Equipe Qualificada */}
+            <div className="flex flex-col items-center">
+              <div className="text-blue-600 mb-4 w-16 h-16">
+                <TeamIcon className="w-full h-full" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Equipe Qualificada</h3>
+              <p className="text-gray-600">Profissionais preparados para unir inovação e confiabilidade.</p>
+            </div>
+
+            {/* Tecnologia de Ponta */}
+            <div className="flex flex-col items-center">
+              <div className="text-blue-600 mb-4 w-16 h-16">
+                <LightningBoltIcon className="w-full h-full" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Tecnologia de Ponta</h3>
+              <p className="text-gray-600">Equipamentos e sistemas atualizados, prontos para grandes produções.</p>
+            </div>
+
+            {/* Resultados Mensuráveis */}
+            <div className="flex flex-col items-center">
+              <div className="text-blue-600 mb-4 w-16 h-16">
+                <ResultsIcon className="w-full h-full" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Resultados Mensuráveis</h3>
+              <p className="text-gray-600">Experiências que engajam e entregam dados.</p>
+            </div>
+          </div>
         </div>
       </div>
       {/* Desktop View */}

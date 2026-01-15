@@ -18,8 +18,8 @@ const slugify = (text: string) =>
 
 const categories = siteData.categorias.map(category => ({
   name: category.nome,
-  description: category.produtos[0]?.descricao || 'Confira nossos produtos incríveis.',
-  slug: slugify(category.nome),
+  description: category.descricao || 'Confira nossos produtos incríveis.',
+  slug: category.slug,
   image: category.imagem,
 }));
 

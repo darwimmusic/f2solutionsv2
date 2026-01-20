@@ -134,7 +134,7 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col items-center md:items-end space-y-2">
                         <FlipLink href="https://www.instagram.com/f2solutions/">Instagram</FlipLink>
                         <FlipLink href="https://www.facebook.com/F2solutions">Facebook</FlipLink>
-                        <FlipLink href="#">LinkedIn</FlipLink>
+                        <FlipLink href="https://www.youtube.com/@f2_solutions">YouTube</FlipLink>
                     </div>
                 </div>
             </div>

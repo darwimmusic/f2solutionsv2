@@ -4,7 +4,7 @@ import Hero from '../../components/Hero';
 import ProductCategories from '../../components/ProductCategories';
 import About from '../../components/About';
 import PastEvents from '../../components/PastEvents';
-import ContactForm from '../../components/ContactForm';
+import BlackWhiteSection from '../../components/BlackWhiteSection';
 import { ParticleTextEffect } from '../../components/ParticleTextEffect';
 import InfiniteScroller from '../../components/InfiniteScroller';
 
@@ -51,12 +51,11 @@ const HomePage: React.FC = () => {
         </InfiniteScroller>
       </section>
       <PastEvents />
-      <div id="contato">
-        <ContactForm />
+      <div id="black-white-section">
+        <BlackWhiteSection />
       </div>
     </>
   );
 };
 
 export default HomePage;
-

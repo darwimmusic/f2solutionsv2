@@ -2,14 +2,17 @@ export const siteData = {
   "empresa": {
     "nome": "F2 SOLUTIONS",
     "slogan": "Somos especialistas em ativações de marca e soluções digitais para eventos. Nascemos com o propósito de unir tecnologia e criatividade para desenvolver experiências que envolvem, conectam e geram resultados. Já realizamos + de 500 projetos e continuamos evoluindo para entregar soluções que marcam momentos e ficam na memória.",
+    "imagem_quem_somos": "https://firebasestorage.googleapis.com/v0/b/f2website.firebasestorage.app/o/SOBRE%2Fcapa%205.png?alt=media",
     "dna_empresa": {
       "titulo": "DNA DA F2 SOLUTIONS",
       "texto": "Nossa essência é movida por autenticidade. Buscamos sempre o novo, o diferente, o inesquecível. Desenvolvemos soluções que despertam os sentidos. “A inovação só faz sentido quando cria experiências que arrepiam.” — Felipe Freitas, F2 SOLUTIONS",
-      "fundador": "— Felipe Freitas, F2 SOLUTIONS"
+      "fundador": "— Felipe Freitas, F2 SOLUTIONS",
+      "imagem": "https://firebasestorage.googleapis.com/v0/b/f2website.firebasestorage.app/o/SOBRE%2F1.jpeg?alt=media"
     },
     "missao": {
       "titulo": "O QUE NÓS DA F2 FAZEMOS?",
-      "texto": "Utilizamos a tecnologia como principal ferramenta para criar ativações interativas, plataformas digitais e experiências imersivas. Se está no seu imaginário, nós realizamos. Se não existir, criamos juntos!"
+      "texto": "Utilizamos a tecnologia como principal ferramenta para criar ativações interativas, plataformas digitais e experiências imersivas. Se está no seu imaginário, nós realizamos. Se não existir, criamos juntos!",
+      "imagem": "https://firebasestorage.googleapis.com/v0/b/f2website.firebasestorage.app/o/SOBRE%2Fcapa%207.jpeg?alt=media"
     }
   },
   "categorias": [

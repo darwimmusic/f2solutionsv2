@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { siteData } from '../data/siteData';
+import ChevronRightIcon from '../../components/icons/ChevronRightIcon';
 
 const slugify = (text: string) =>
   text
@@ -15,7 +16,8 @@ const slugify = (text: string) =>
 
 const CategoryPage: React.FC = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
-  const category = siteData.categorias.find(cat => slugify(cat.nome) === categoryName);
+  const currentIndex = siteData.categorias.findIndex(cat => slugify(cat.nome) === categoryName);
+  const category = siteData.categorias[currentIndex];
 
   if (!category) {
     return (
@@ -30,6 +32,9 @@ const CategoryPage: React.FC = () => {
     );
   }
 
+  const nextIndex = (currentIndex + 1) % siteData.categorias.length;
+  const nextCategory = siteData.categorias[nextIndex];
+  
   const categoryDescription = category.produtos[0]?.descricao || 'Nossos produtos e soluções.';
 
   return (
@@ -42,7 +47,7 @@ const CategoryPage: React.FC = () => {
         </div>
 
         {/* Projects Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {category.produtos.map((produto) => {
             const productSlug = slugify(produto.nome);
             return (
@@ -58,6 +63,22 @@ const CategoryPage: React.FC = () => {
               </Link>
             );
           })}
+        </div>
+
+        {/* Next Category Navigation */}
+        <div className="flex justify-end border-t border-gray-200 pt-12">
+          <Link 
+            to={`/categoria/${nextCategory.slug}`} 
+            className="flex items-center text-xl font-bold text-blue-600 hover:text-blue-800 transition-colors group"
+          >
+            <div className="text-right mr-4">
+              <span className="block text-sm text-gray-500 font-normal">Próxima Categoria</span>
+              {nextCategory.nome}
+            </div>
+            <div className="bg-blue-100 p-3 rounded-full group-hover:bg-blue-200 transition-colors">
+              <ChevronRightIcon className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
         </div>
       </div>
     </div>

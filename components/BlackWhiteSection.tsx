@@ -1,45 +1,42 @@
-import React from 'react';
-import { LavaLamp } from './ui/fluid-blob';
+import React, { useEffect, useRef } from 'react';
+import { initFluid } from '../src/utils/fluidEternal';
 
 const BlackWhiteSection: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const takeoverRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      const { cleanup } = initFluid(canvasRef.current, takeoverRef.current);
+      return cleanup;
+    }
+  }, []);
+
   return (
-    <section id="f2-black-white" className="relative w-full min-h-screen overflow-hidden flex flex-col md:flex-row">
-      {/* Split Background - Absolute to cover full area */}
-      <div className="absolute inset-0 flex flex-col md:flex-row z-0">
-        <div className="w-full md:w-1/2 h-1/2 md:h-full bg-white"></div>
-        <div className="w-full md:w-1/2 h-1/2 md:h-full bg-black"></div>
-      </div>
+    <section 
+      id="f2-black-white" 
+      className="relative w-full h-screen overflow-hidden"
+      style={{ background: 'linear-gradient(90deg, #fff 0 50%, #000 50% 100%)' }}
+    >
+      {/* TAKEOVER BG (CROSSFADE) - Z-Index 1 (between base and canvas) */}
+      <div 
+        ref={takeoverRef} 
+        id="takeover-bg" 
+        className="absolute inset-0 z-10 pointer-events-none opacity-0 bg-black transition-all duration-900 ease-in-out" 
+      />
 
-      {/* Content - Lower Z-Index than Blob */}
-      <div className="relative z-10 w-full h-full flex flex-col md:flex-row flex-grow">
-        {/* Left Side (White) - Text Black */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-center p-12 md:p-24 min-h-[50vh] md:min-h-screen">
-          <div className="text-black">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6">
-              WHITE
-            </h2>
-            <p className="text-lg md:text-xl font-medium max-w-md mx-auto leading-relaxed uppercase tracking-widest">
-              Design Puro &<br/>Experiência Clara
-            </p>
-          </div>
-        </div>
+      {/* WEBGL CANVAS - Z-Index 2 */}
+      <canvas 
+        ref={canvasRef} 
+        id="fluid-canvas" 
+        className="absolute inset-0 w-full h-full z-20 block touch-none" 
+      />
 
-        {/* Right Side (Black) - Text White */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-center text-center p-12 md:p-24 min-h-[50vh] md:min-h-screen">
-           <div className="text-white">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6">
-              BLACK
-            </h2>
-            <p className="text-lg md:text-xl font-medium max-w-md mx-auto leading-relaxed uppercase tracking-widest">
-              Tecnologia &<br/>Profundidade
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* LavaLamp Overlay - Higher Z-Index + Exclusion */}
-      <div className="absolute inset-0 pointer-events-none z-20 opacity-100 mix-blend-exclusion">
-        <LavaLamp />
+      {/* TITLE - Z-Index 3 */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center select-none pointer-events-none whitespace-nowrap">
+        <span className="text-black text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">WHITE</span>
+        <span className="text-gray-500 text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px] mx-2 md:mx-5"> / </span>
+        <span className="text-white text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">BLACK</span>
       </div>
     </section>
   );

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>White / Black – Fluid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="fluid-overlay-styles.css" />
+</head>
+
+<body>
+  <!-- BASE SPLIT BACKGROUND IS ON body (CSS) -->
+
+  <!-- TAKEOVER BACKGROUND (CROSSFADE) -->
+  <div id="takeover-bg" aria-hidden="true"></div>
+
+  <!-- WEBGL CANVAS -->
+  <canvas id="fluid-canvas"></canvas>
+
+  <!-- SPLIT OVERLAY (optional helper areas / keep pointer-events none) -->
+  <div class="split left"></div>
+  <div class="split right"></div>
+
+  <!-- TITLE -->
+  <div class="title">
+    <span class="white">WHITE</span>
+    <span class="slash"> / </span>
+    <span class="black">BLACK</span>
+  </div>
+
+  <script src="fluid_eternal.js"></script>
+</body>
+</html>

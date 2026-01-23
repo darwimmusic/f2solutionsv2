@@ -44,7 +44,7 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {/* Full Service */}
             <div className="flex flex-col items-center">
-              <div className="text-blue-600 mb-4 w-16 h-16">
+              <div className="text-blue-600 mb-1 w-16 h-16">
                 <FullServiceIcon className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-2">Full Service</h3>
@@ -53,7 +53,7 @@ const About: React.FC = () => {
 
             {/* Equipe Qualificada */}
             <div className="flex flex-col items-center">
-              <div className="text-blue-600 mb-4 w-16 h-16">
+              <div className="text-blue-600 mb-1 w-16 h-16">
                 <TeamIcon className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-2">Equipe Qualificada</h3>
@@ -62,7 +62,7 @@ const About: React.FC = () => {
 
             {/* Tecnologia de Ponta */}
             <div className="flex flex-col items-center">
-              <div className="text-blue-600 mb-4 w-16 h-16">
+              <div className="text-blue-600 mb-1 w-16 h-16">
                 <LightningBoltIcon className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-2">Tecnologia de Ponta</h3>
@@ -71,7 +71,7 @@ const About: React.FC = () => {
 
             {/* Resultados Mensuráveis */}
             <div className="flex flex-col items-center">
-              <div className="text-blue-600 mb-4 w-16 h-16">
+              <div className="text-blue-600 mb-1www w-16 h-16">
                 <ResultsIcon className="w-full h-full" />
               </div>
               <h3 className="text-xl font-bold mb-2">Resultados Mensuráveis</h3>

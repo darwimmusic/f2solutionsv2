@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ScrollToTop from './src/components/ScrollToTop';
 import HomePage from './src/pages/HomePage';
+import AllCategoriesPage from './src/pages/AllCategoriesPage';
 import CategoryPage from './src/pages/CategoryPage';
 import ProjectPage from './src/pages/ProjectPage';
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/categorias" element={<AllCategoriesPage />} />
             <Route path="/categoria/:categoryName" element={<CategoryPage />} />
             <Route path="/projeto/:categorySlug/:productSlug" element={<ProjectPage />} />
           </Routes>

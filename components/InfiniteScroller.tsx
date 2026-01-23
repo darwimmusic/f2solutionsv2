@@ -75,10 +75,10 @@ const InfiniteScroller = forwardRef<HTMLDivElement, InfiniteScrollerProps>(({
         className='flex whitespace-nowrap gap-10 flex-nowrap'
         style={{ x }}
       >
-        <span className={`block text-[8vw] ${className || ''}`} style={style}>{children}</span>
-        <span className={`block text-[8vw] ${className || ''}`} style={style}>{children}</span>
-        <span className={`block text-[8vw] ${className || ''}`} style={style}>{children}</span>
-        <span className={`block text-[8vw] ${className || ''}`} style={style}>{children}</span>
+        <span className={`block text-[5vw] ${className || ''}`} style={style}>{children}</span>
+        <span className={`block text-[5vw] ${className || ''}`} style={style}>{children}</span>
+        <span className={`block text-[5vw] ${className || ''}`} style={style}>{children}</span>
+        <span className={`block text-[5vw] ${className || ''}`} style={style}>{children}</span>
       </motion.div>
     </div>
   );

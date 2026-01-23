@@ -98,7 +98,7 @@ const WaveAnimation = ({ barCount = 23 }: { barCount?: number }) => {
         <div
             ref={containerRef}
             aria-hidden="true"
-            className="overflow-hidden h-[200px]"
+            className="overflow-hidden h-[100px]"
         >
             <div className="mt-0">
                 {Array.from({ length: barCount }).map((_, index) => (
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
         <footer className="bg-white text-black relative">
             <WaveAnimation />
 
-            <div className="container mx-auto px-6 py-12">
+            <div className="container mx-auto px-6 py-6">
                 <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                     <div className="mb-8 md:mb-0">
                         <p>&copy; {new Date().getFullYear()} F2 SOLUTIONS EM TECNOLOGIA E CONTEÚDO. Todos os direitos reservados</p>

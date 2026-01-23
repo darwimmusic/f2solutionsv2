@@ -15,7 +15,7 @@ const BlackWhiteSection: React.FC = () => {
   return (
     <section 
       id="f2-black-white" 
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-[85vh] overflow-hidden"
       style={{ background: 'linear-gradient(90deg, #fff 0 50%, #000 50% 100%)' }}
     >
       {/* TAKEOVER BG (CROSSFADE) - Z-Index 1 (between base and canvas) */}

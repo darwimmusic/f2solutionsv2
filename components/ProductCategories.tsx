@@ -33,7 +33,7 @@ const ProductCategories: React.FC = () => {
     <section className="text-white overflow-hidden">
       {/* Desktop View */}
       <div 
-        className="w-full h-[48rem] hidden md:flex"
+        className="w-full h-[42rem] hidden md:flex"
         onMouseLeave={() => setHoveredIndex(null)}
       >
         {categories.map((category, index) => {

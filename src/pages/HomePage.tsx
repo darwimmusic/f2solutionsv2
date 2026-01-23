@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
       <div id="projects">
         <ProductCategories />
       </div>
-      <section className="bg-white py-10 overflow-hidden">
+      <section className="bg-white py-8 overflow-hidden">
         <InfiniteScroller baseVelocity={-2} className="font-bold uppercase text-black">
           INOVAÇÃO • TECNOLOGIA • EXPERIÊNCIA •&nbsp;
         </InfiniteScroller>

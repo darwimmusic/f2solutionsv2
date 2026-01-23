@@ -143,7 +143,7 @@ export function ParticleTextEffect({ words = F2_WORDS }: ParticleTextEffectProps
 
   const generateRandomPos = (x: number, y: number, mag: number): Vector2D => {
     const randomX = Math.random() * 1920
-    const randomY = Math.random() * 500
+    const randomY = Math.random() * 300
     const direction = { x: randomX - x, y: randomY - y }
     const magnitude = Math.sqrt(direction.x * direction.x + direction.y * direction.y)
     if (magnitude > 0) {
@@ -162,7 +162,7 @@ export function ParticleTextEffect({ words = F2_WORDS }: ParticleTextEffectProps
 
     offscreenCtx.fillStyle = "white"
     // --- ALTERAÇÃO 3: Ajuste no tamanho da fonte para acomodar palavras maiores ---
-    offscreenCtx.font = "bold 90px Arial"
+    offscreenCtx.font = "bold 70px Arial"
     offscreenCtx.textAlign = "center"
     offscreenCtx.textBaseline = "middle"
     offscreenCtx.fillText(word, canvas.width / 2, canvas.height / 2)
@@ -282,7 +282,7 @@ export function ParticleTextEffect({ words = F2_WORDS }: ParticleTextEffectProps
     if (!canvas) return
 
     canvas.width = 1920
-    canvas.height = 500
+    canvas.height = 300
 
     // --- ALTERAÇÃO 5: Inicializa com a primeira palavra e a cor fixa ---
     nextWord(words[0], F2_COLOR, canvas)

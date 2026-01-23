@@ -48,7 +48,7 @@ const PastEvents: React.FC = () => {
   const duplicatedProducts = [...allProducts, ...allProducts];
 
   return (
-    <section id="cases" className="bg-white py-20 overflow-hidden">
+    <section id="cases" className="bg-white py-24 overflow-hidden">
       <style>{`
         @keyframes scroll-right {
           0% {
@@ -90,7 +90,7 @@ const PastEvents: React.FC = () => {
         }
       `}</style>
       
-      <div className="container mx-auto px-6 mb-16">
+      <div className="container mx-auto px-6 mb-8">
         <h2 className="text-5xl font-bold text-center">Cases de Sucesso</h2>
       </div>
       

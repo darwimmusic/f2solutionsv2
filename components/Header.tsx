@@ -84,12 +84,12 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 p-2">
+    <header className="fixed top-8 left-0 right-0 z-50 p-2">
       <div className="container mx-auto flex items-center justify-between">
         <img 
           src="https://ik.imagekit.io/viihferreira/Logo_%C3%8Dcone_White.png?updatedAt=1757445076670" 
           alt="F2 Solutions Logo" 
-          className="w-14 md:w-20 lg:w-16" 
+          className="w-14 md:w-20 lg:w-16 md:absolute md:left-[2px] md:top-1/2 md:-translate-y-1/2" 
         />
         <div className="hidden md:block absolute left-1/2 -translate-x-1/2">
           <div className="relative">

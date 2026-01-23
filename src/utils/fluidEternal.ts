@@ -87,10 +87,10 @@ export function initFluid(canvas, takeoverEl) {
   const CENTER_FORCE = 80;              // força da agitação
   const CENTER_RADIUS_MULT = 1.8;       // raio da agitação (só velocity)
 
-  // 0 = esquerda, 1 = direita
+  // 0 = esquerda, 1 = direita, 2 = idle (split restoration)
   let currentSide = 0;
+  let interactionState = 2; // Start in Idle (split)
 
-  
   const TAKEOVER_DELAY_MS = 4000; // após 4s parado no lado, trava a tela nessa cor
   let takeoverActive = false;
   let sideChangeTime = Date.now();
@@ -1116,7 +1116,7 @@ export function initFluid(canvas, takeoverEl) {
 
     const now = Date.now();
 
-    // se ficar 4s no mesmo lado, trava: tela inteira fica na cor do lado e para de injetar tinta
+    // Trigger takeover if lingering too long
     if (!takeoverActive && (now - sideChangeTime) >= TAKEOVER_DELAY_MS) {
       triggerTakeover();
     }
@@ -1133,8 +1133,10 @@ export function initFluid(canvas, takeoverEl) {
 
       injectEdgeInk();
       stirCenter();
-      if (!config.PAUSED) step(dt);
     }
+
+    // Always run physics so fluid dissipates even during takeover
+    if (!config.PAUSED) step(dt);
 
     render(null);
 
@@ -1397,6 +1399,8 @@ export function initFluid(canvas, takeoverEl) {
   // ==========================
   function setSideByNormalizedX(nx) {
     const newSide = nx < 0.5 ? 0 : 1;
+    interactionState = newSide;
+
     if (newSide === currentSide) return;
 
     // inicia transição (crossfade) entre os lados
@@ -1411,7 +1415,6 @@ export function initFluid(canvas, takeoverEl) {
       setTakeoverBg(currentSide, true);
     }
 
-
     inTransition = true;
     transitionStartTime = sideChangeTime;
 
@@ -1421,7 +1424,22 @@ export function initFluid(canvas, takeoverEl) {
       setTakeoverBg(currentSide, false);
       clearAllSimulation();
     }
-}
+  }
+
+  function setIdleState() {
+    if (interactionState === 2) return;
+    interactionState = 2;
+    
+    // Cancel takeover if active
+    if (takeoverActive) {
+      takeoverActive = false;
+      setTakeoverBg(currentSide, false); // fade out
+      // We don't clear simulation here, we want it to flow back
+    }
+    
+    // Reset timer just in case
+    sideChangeTime = Date.now();
+  }
   
 
   function fillDyeToSide(side) {
@@ -1434,45 +1452,69 @@ export function initFluid(canvas, takeoverEl) {
   }
 
   function triggerTakeover() {
+    if (interactionState === 2) return; // Never takeover in idle
     takeoverActive = true;
     // fundo/tela inteira em crossfade (DOM)
     setTakeoverBg(currentSide, true);
-    // limpa a simulação pra não virar cinza por mistura
-    clearAllSimulation();
+    // DO NOT clear simulation immediately, let it fade
   }
 
-function injectEdgeInk() {
-  const isWhite = currentSide === 0;
+  function injectEdgeInk() {
+    // Determine which sides to inject based on state
+    // IDLE = Inject Both (0 and 1)
+    // LEFT (0) = Inject Left (White)
+    // RIGHT (1) = Inject Right (Black)
+    
+    const injectSides = [];
+    if (interactionState === 2) {
+      injectSides.push(0, 1);
+    } else {
+      injectSides.push(interactionState);
+    }
 
-  let intensity = 1.0;
-  if (inTransition) {
-    const p = Math.min(1.0, Math.max(0.0, (Date.now() - transitionStartTime) / TRANSITION_MS));
-    intensity = 0.15 + 0.85 * p;
+    let intensity = 1.0;
+    if (inTransition) {
+      const p = Math.min(1.0, Math.max(0.0, (Date.now() - transitionStartTime) / TRANSITION_MS));
+      intensity = 0.15 + 0.85 * p;
+    }
+
+    const t = Date.now() * 0.00018;
+    const wobbleY = Math.sin(t) * 0.06;
+
+    injectSides.forEach(side => {
+      const isWhite = (side === 0);
+
+      // Reduce intensity for dual injection to balance it out if needed, or keep full power
+      // Keeping full power creates a nice clash
+      
+      for (let i = 0; i < EDGE_SPLATS_PER_FRAME; i++) {
+        if (inTransition && Math.random() > intensity) continue;
+
+        const r = Math.random();
+        const y = 0.5 + wobbleY + (r - 0.5) * 0.22;
+        const x = isWhite ? (Math.random() * EDGE_BAND_WIDTH)
+                          : (1.0 - Math.random() * EDGE_BAND_WIDTH);
+
+        const dir = isWhite ? 1.0 : -1.0;
+        const dx = dir * ((EDGE_FORCE + (Math.random() - 0.5) * EDGE_FORCE_VAR) * intensity);
+        const dy = (Math.sin(t + i * 0.7) * 18.0) * intensity;
+
+        splat(x, y, dx, dy, isWhite ? getWhiteMask(intensity) : getBlackMask(intensity));
+      }
+
+      // velocity push on opposite side?
+      // existing code pushed on OPOSITE side. 
+      // If we are injecting BOTH, do we need this? 
+      // If injecting Left, we push Right. If injecting Right, we push Left.
+      // If Both, maybe skip or push both inward?
+      
+      if (interactionState !== 2) {
+         const xOut = isWhite ? 0.98 : 0.02;
+         const dirOut = isWhite ? 1.0 : -1.0;
+         splatVelocityOnly(xOut, 0.5, dirOut * (40.0 * (inTransition ? 0.6 : 1.0)), 0.0, 2.2);
+      }
+    });
   }
-
-  const t = Date.now() * 0.00018;
-  const wobbleY = Math.sin(t) * 0.06;
-
-  for (let i = 0; i < EDGE_SPLATS_PER_FRAME; i++) {
-    if (inTransition && Math.random() > intensity) continue;
-
-    const r = Math.random();
-    const y = 0.5 + wobbleY + (r - 0.5) * 0.22;
-    const x = isWhite ? (Math.random() * EDGE_BAND_WIDTH)
-                      : (1.0 - Math.random() * EDGE_BAND_WIDTH);
-
-    const dir = isWhite ? 1.0 : -1.0;
-    const dx = dir * ((EDGE_FORCE + (Math.random() - 0.5) * EDGE_FORCE_VAR) * intensity);
-    const dy = (Math.sin(t + i * 0.7) * 18.0) * intensity;
-
-    splat(x, y, dx, dy, isWhite ? getWhiteMask(intensity) : getBlackMask(intensity));
-  }
-
-  // leve "puxão" na borda oposta (só velocity)
-  const xOut = isWhite ? 0.98 : 0.02;
-  const dirOut = isWhite ? 1.0 : -1.0;
-  splatVelocityOnly(xOut, 0.5, dirOut * (40.0 * (inTransition ? 0.6 : 1.0)), 0.0, 2.2);
-}
 
 
 
@@ -1538,13 +1580,26 @@ function injectEdgeInk() {
   // Input (só pra saber o lado)
   // ==========================
   function handleMouseMove(e) {
-    const nx = e.clientX / Math.max(1, window.innerWidth);
-    setSideByNormalizedX(nx);
+    // Relative to canvas
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const nx = x / Math.max(1, rect.width);
+    
+    // Clamp nx 0..1 just in case
+    const clampedNx = Math.max(0, Math.min(1, nx));
+    
+    setSideByNormalizedX(clampedNx);
+  }
+
+  function handleMouseLeave(e) {
+    setIdleState();
   }
 
   function handleTouchMove(e) {
     if (!e.touches || e.touches.length === 0) return;
-    const nx = e.touches[0].clientX / Math.max(1, window.innerWidth);
+    const rect = canvas.getBoundingClientRect();
+    const x = e.touches[0].clientX - rect.left;
+    const nx = x / Math.max(1, rect.width);
     setSideByNormalizedX(nx);
   }
 
@@ -1558,13 +1613,17 @@ function injectEdgeInk() {
     if (e.code === "KeyR") clearAllSimulation();
   }
 
-  window.addEventListener("mousemove", handleMouseMove);
-  window.addEventListener("touchmove", handleTouchMove, { passive: true });
+  // Attach to canvas instead of window for interaction
+  canvas.addEventListener("mousemove", handleMouseMove);
+  canvas.addEventListener("mouseleave", handleMouseLeave);
+  canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
+  
+  // Keep these on window
   window.addEventListener("resize", handleResize);
   window.addEventListener("keydown", handleKeydown);
 
-  // default
-  setSideByNormalizedX(0.25);
+  // default to IDLE
+  interactionState = 2;
 
   update(); // start loop
 
@@ -1642,8 +1701,9 @@ function injectEdgeInk() {
   return {
     cleanup: () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
+      canvas.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("keydown", handleKeydown);
     }

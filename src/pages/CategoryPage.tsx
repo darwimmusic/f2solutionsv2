@@ -21,6 +21,8 @@ const CategoryPage: React.FC = () => {
   const currentIndex = siteData.categorias.findIndex(cat => slugify(cat.nome) === categoryName);
   const category = siteData.categorias[currentIndex];
 
+  const needsScroll = category ? category.produtos.length > 2 : false;
+
   const [width, setWidth] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
@@ -40,7 +42,7 @@ const CategoryPage: React.FC = () => {
     const speed = 50; // pixels per second
 
     const animate = () => {
-      if (!isHovered && width > 0) {
+      if (!isHovered && width > 0 && needsScroll) {
         const currentTime = Date.now();
         const delta = (currentTime - lastTime) / 1000;
         lastTime = currentTime;
@@ -62,7 +64,7 @@ const CategoryPage: React.FC = () => {
 
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [width, isHovered, x]);
+  }, [width, isHovered, x, needsScroll]);
 
 
   const handleManualScroll = (direction: 'left' | 'right') => {
@@ -89,8 +91,10 @@ const CategoryPage: React.FC = () => {
     );
   }
 
-  // Duplicate items for infinite scroll illusion
-  const duplicatedProducts = [...category.produtos, ...category.produtos, ...category.produtos, ...category.produtos];
+  // Only duplicate for infinite scroll when there are enough products to scroll
+  const duplicatedProducts = needsScroll
+    ? [...category.produtos, ...category.produtos, ...category.produtos, ...category.produtos]
+    : category.produtos;
 
   return (
     <div className="bg-black text-white min-h-screen overflow-hidden flex flex-col">

@@ -22,10 +22,10 @@ const Hero: React.FC = () => {
         loop
         muted
         playsInline
-        poster="https://ik.imagekit.io/viihferreira/HERO/Video%20F2%20Solutions_Horizontal.mp4/ik-thumbnail.jpg"
+        poster="/assets/hero/video-f2-solutions-poster.jpg"
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="https://ik.imagekit.io/viihferreira/HERO/Video%20F2%20Solutions_Horizontal.mp4?updatedAt=1757538391203" type="video/mp4" />
+        <source src="/assets/hero/video-f2-solutions.mp4" type="video/mp4" />
       </video>
       
       {/* Scroll Indicator */}

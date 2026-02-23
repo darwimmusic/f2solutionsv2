@@ -3,7 +3,7 @@ import React from 'react';
 const FloatingWhatsApp: React.FC = () => {
   return (
     <a
-      href="https://wa.me/"
+      href="https://api.whatsapp.com/send/?phone=5511930746956"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center hover:bg-[#20bd5a]"

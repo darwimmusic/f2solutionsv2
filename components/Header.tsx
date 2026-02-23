@@ -6,7 +6,6 @@ const navLinks = [
   { id: 'about', name: 'Sobre' },
   { id: 'projects', name: 'Projetos' },
   { id: 'cases', name: 'Cases' },
-  { id: 'contato', name: 'Contato' },
 ];
 
 const Header: React.FC = () => {
@@ -87,7 +86,7 @@ const Header: React.FC = () => {
     <header className="fixed top-8 left-0 right-0 z-50 p-2">
       <div className="container mx-auto flex items-center justify-between">
         <img 
-          src="https://ik.imagekit.io/viihferreira/Logo_%C3%8Dcone_White.png?updatedAt=1757445076670" 
+          src="/assets/logo/logo-icone-white.png" 
           alt="F2 Solutions Logo" 
           className="w-14 md:w-20 lg:w-16 md:absolute md:left-[2px] md:top-1/2 md:-translate-y-1/2" 
         />

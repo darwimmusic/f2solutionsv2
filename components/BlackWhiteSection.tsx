@@ -13,32 +13,38 @@ const BlackWhiteSection: React.FC = () => {
   }, []);
 
   return (
-    <section 
-      id="f2-black-white" 
-      className="relative w-full h-[85vh] overflow-hidden"
-      style={{ background: 'linear-gradient(90deg, #fff 0 50%, #000 50% 100%)' }}
+    <a
+      href="https://api.whatsapp.com/send/?phone=5511930746956"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      {/* TAKEOVER BG (CROSSFADE) - Z-Index 1 (between base and canvas) */}
-      <div 
-        ref={takeoverRef} 
-        id="takeover-bg" 
-        className="absolute inset-0 z-10 pointer-events-none opacity-0 bg-black transition-all duration-900 ease-in-out" 
-      />
+      <section
+        id="f2-black-white"
+        className="relative w-full h-[85vh] overflow-hidden cursor-pointer"
+        style={{ background: 'linear-gradient(90deg, #fff 0 50%, #000 50% 100%)' }}
+      >
+        {/* TAKEOVER BG (CROSSFADE) - Z-Index 1 (between base and canvas) */}
+        <div
+          ref={takeoverRef}
+          id="takeover-bg"
+          className="absolute inset-0 z-10 pointer-events-none opacity-0 bg-black transition-all duration-900 ease-in-out"
+        />
 
-      {/* WEBGL CANVAS - Z-Index 2 */}
-      <canvas 
-        ref={canvasRef} 
-        id="fluid-canvas" 
-        className="absolute inset-0 w-full h-full z-20 block touch-none" 
-      />
+        {/* WEBGL CANVAS - Z-Index 2 */}
+        <canvas
+          ref={canvasRef}
+          id="fluid-canvas"
+          className="absolute inset-0 w-full h-full z-20 block touch-none"
+        />
 
-      {/* TITLE - Z-Index 3 */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center select-none pointer-events-none whitespace-nowrap">
-        <span className="text-black text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">WHITE</span>
-        <span className="text-gray-500 text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px] mx-2 md:mx-5"> / </span>
-        <span className="text-white text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">BLACK</span>
-      </div>
-    </section>
+        {/* TITLE - Z-Index 3 */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center select-none pointer-events-none whitespace-nowrap">
+          <span className="text-black text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">WHITE</span>
+          <span className="text-gray-500 text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px] mx-2 md:mx-5"> / </span>
+          <span className="text-white text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">BLACK</span>
+        </div>
+      </section>
+    </a>
   );
 };
 

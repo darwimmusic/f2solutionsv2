@@ -10,19 +10,19 @@ const aboutData = [
     id: 'quem-somos',
     title: 'QUEM SOMOS',
     description: siteData.empresa.slogan,
-    image: siteData.empresa.imagem_quem_somos || 'https://ik.imagekit.io/viihferreira/QUEM%20SOMOS/RODOLFO.PNG?updatedAt=1757448602146'
+    image: siteData.empresa.imagem_quem_somos || '/assets/sobre/rodolfo.png'
   },
   {
     id: 'dna',
     title: siteData.empresa.dna_empresa.titulo,
     description: siteData.empresa.dna_empresa.texto,
-    image: siteData.empresa.dna_empresa.imagem || 'https://ik.imagekit.io/viihferreira/QUEM%20SOMOS/FELIPE.PNG?updatedAt=1757446977018'
+    image: siteData.empresa.dna_empresa.imagem || '/assets/sobre/felipe.png'
   },
   {
     id: 'o-que-fazemos',
     title: siteData.empresa.missao.titulo,
     description: siteData.empresa.missao.texto,
-    image: siteData.empresa.missao.imagem || 'https://ik.imagekit.io/viihferreira/QUEM%20SOMOS/bola%20led.PNG?updatedAt=1757449050559'
+    image: siteData.empresa.missao.imagem || '/assets/sobre/bola-led.png'
   }
 ];
 

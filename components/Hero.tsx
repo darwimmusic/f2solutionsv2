@@ -17,15 +17,27 @@ const Hero: React.FC = () => {
 
   return (
     <section className="h-[100dvh] relative overflow-hidden">
+      {/* Desktop video */}
       <video
         autoPlay
         loop
         muted
         playsInline
         poster="/assets/hero/video-f2-solutions-poster.jpg"
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full object-cover hidden md:block"
       >
         <source src="/assets/hero/video-f2-solutions.mp4" type="video/mp4" />
+      </video>
+      {/* Mobile video (vertical) */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/assets/hero/video-f2-solutions-poster.jpg"
+        className="absolute top-0 left-0 w-full h-full object-cover block md:hidden"
+      >
+        <source src="/assets/hero/video-f2-solutions-mobile.mp4" type="video/mp4" />
       </video>
       
       {/* Scroll Indicator */}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { siteData } from '../src/data/siteData';
+import VideoReels from './VideoReels';
 
 const allProducts = siteData.categorias.flatMap(category => 
   category.produtos.map(produto => ({
@@ -91,20 +92,22 @@ const PastEvents: React.FC = () => {
       `}</style>
       
       <div className="container mx-auto px-6 mb-8">
-        <h2 className="text-5xl font-bold text-center">Cases de Sucesso</h2>
+        <h2 className="text-5xl font-bold text-center">Cases</h2>
       </div>
       
       <div className="scroll-container w-full">
         <div className="infinite-scroll flex gap-8 w-max">
           {duplicatedProducts.map((product, index) => (
-            <CaseCard 
-              key={`${product.slug}-${index}`} 
-              product={product} 
-              priority={index < 6} 
+            <CaseCard
+              key={`${product.slug}-${index}`}
+              product={product}
+              priority={index < 6}
             />
           ))}
         </div>
       </div>
+
+      <VideoReels />
     </section>
   );
 };

@@ -37,11 +37,18 @@ const BlackWhiteSection: React.FC = () => {
           className="absolute inset-0 w-full h-full z-20 block touch-none"
         />
 
-        {/* TITLE - Z-Index 3 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center select-none pointer-events-none whitespace-nowrap">
-          <span className="text-black text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">WHITE</span>
-          <span className="text-gray-500 text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px] mx-2 md:mx-5"> / </span>
-          <span className="text-white text-5xl md:text-7xl lg:text-[72px] font-bold tracking-[8px]">BLACK</span>
+        {/* COPY - Z-Index 3 */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 select-none pointer-events-none w-full flex">
+          <div className="w-1/2 flex items-center justify-end px-6 md:px-16 lg:px-24">
+            <p className="text-black text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-[4px] md:tracking-[8px] text-right leading-tight uppercase">
+              DEU UM BRANCO? A F2 TE AJUDA A TIRAR A IDEIA DO PAPEL.
+            </p>
+          </div>
+          <div className="w-1/2 flex items-center justify-start px-6 md:px-16 lg:px-24">
+            <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-[4px] md:tracking-[8px] text-left leading-tight uppercase">
+              JÁ TEM UMA IDEIA? VAMOS LAPIDAR JUNTOS E TRANSFORMÁ-LA EM REALIDADE.
+            </p>
+          </div>
         </div>
       </section>
     </a>
